@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -163,9 +164,7 @@ a { color: inherit; }
 .he-prev { left: 12px; }
 .he-next { right: 12px; }
 
-/* 슬라이드 간 높이 통일: 제목 3줄, 서브 3줄 기준 최소 높이 확보 */
-#he-title { min-height: 3.9em; }
-#he-sub { min-height: 5em; }
+
 .hero .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -338,29 +337,6 @@ a { color: inherit; }
   word-break: keep-all;
 }
 .news .news-sub { font-size: 15px; color: var(--ink-soft); margin-bottom: 24px; }
-.news-tabs {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 22px;
-}
-.news-tab {
-  font-family: 'GmarketSans', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--ink-soft);
-  background: #eef5f9;
-  border: none;
-  border-radius: 999px;
-  padding: 11px 20px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.news-tab.active {
-  color: #fff;
-  background: var(--brand);
-  box-shadow: 0 4px 12px rgba(0,175,236,0.3);
-}
 .news-track {
   display: flex;
   gap: 14px;
@@ -382,13 +358,6 @@ a { color: inherit; }
   gap: 10px;
 }
 .news-card:hover { border-color: var(--brand); transform: translateY(-2px); }
-.news-card .nc-cat {
-  font-family: 'GmarketSans', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--brand-deep);
-}
 .news-card .nc-title { font-size: 15.5px; font-weight: 700; line-height: 1.45; word-break: keep-all; }
 .news-card .nc-date { font-size: 12.5px; color: var(--ink-soft); margin-top: auto; }
 .news-nav { display: flex; gap: 8px; justify-content: flex-end; margin-top: 6px; }
@@ -831,12 +800,23 @@ footer {
 .cat-card {
   background: #fff;
   border-radius: 18px;
-  padding: 32px 28px;
+  overflow: hidden;
   box-shadow: 0 8px 24px rgba(0,110,150,0.08);
   display: flex;
   flex-direction: column;
 }
-.cat-card .cat-icon { font-size: 28px; margin-bottom: 14px; }
+.cat-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+.cat-body {
+  padding: 26px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 .cat-card h3 {
   font-family: 'GmarketSans', sans-serif;
   font-weight: 700;
@@ -975,8 +955,7 @@ footer {
   .case-track .case-card { flex: 0 0 82vw; }
   .track-nav { display: none; }
   .he-arrow { width: 34px; height: 34px; font-size: 18px; }
-  #he-title { min-height: 0; }
-  #he-sub { min-height: 0; }
+
   .ps { padding: 0 20px 72px; }
   .ps-box { padding: 26px 22px; }
   .donate-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -1007,13 +986,13 @@ footer {
 </header>
 
 <section class="hero" id="hero">
-  <div class="hero-text" id="hero-text">
-    <span class="eyebrow" id="he-eyebrow"></span>
-    <h1 id="he-title"></h1>
-    <p class="hero-sub" id="he-sub"></p>
+  <div class="hero-text">
+    <span class="eyebrow">권력감시 · 예산감시 · 시민참여 · 1999년부터</span>
+    <h1>당신이 낸 세금,<br><span class="hl">누가 지켜보고</span> 있을까요?<br>여기, 시민행동이 있습니다. <span class="plusone">+1!</span></h1>
+    <p class="hero-sub">함께하는 시민행동은 1999년부터 정부와 공공기관의 예산낭비를 찾아 기록하고, 바로잡아온 시민단체입니다. 뿐만 아니라 기업 감시와 정보인권을 위해 활동해왔습니다. 시민행동은 정부·기업의 지원 없이 오직 시민의 후원으로 움직입니다.</p>
     <div class="hero-actions">
-      <a class="btn-main" id="he-cta" href="#donate"></a>
-      <a class="btn-sub" id="he-sub-cta" href="#pain"></a>
+      <a class="btn-main" href="#donate">시민 한 명 더하기 →</a>
+      <a class="btn-sub" href="#work">어떤 활동을 하나요?</a>
     </div>
   </div>
   <div class="hero-photo" id="hero-photo">
@@ -1065,33 +1044,39 @@ footer {
     <p class="change-sub">시민행동은 시민의 물음에 함께 고민하며 답과 다음을 준비해왔습니다.</p>
     <div class="cat-grid">
       <div class="cat-card">
-        <div class="cat-icon">👁</div>
-        <h3>권력 감시</h3>
-        <p class="cat-desc">권력이 시민을 두려워하도록, 가까운 곳부터 지켜봅니다.</p>
-        <ul class="cat-list">
-          <li>지방의정 감시</li>
-          <li>서울시 시정·의정 감시</li>
-        </ul>
+        <img class="cat-photo" src="img/cat-power.jpg" alt="권력 감시 활동 현장" loading="lazy">
+        <div class="cat-body">
+          <h3>권력 감시</h3>
+          <p class="cat-desc">국가 권력은 시민이 만들고, 시민행동은 권력을 시민의 눈으로 감시합니다.</p>
+          <ul class="cat-list">
+            <li>지방의정 감시</li>
+            <li>서울시 시정·의정 감시</li>
+          </ul>
+        </div>
       </div>
       <div class="cat-card">
-        <div class="cat-icon">🏺</div>
-        <h3>예산 감시</h3>
-        <p class="cat-desc">당신이 낸 세금이 제대로 쓰이는지 찾아내고 기록합니다.</p>
-        <ul class="cat-list">
-          <li>밑빠진 독상</li>
-          <li>지자체 재정 투명성</li>
-          <li>예산학교</li>
-        </ul>
+        <img class="cat-photo" src="img/cat-budget.jpg" alt="예산 감시 활동 현장" loading="lazy">
+        <div class="cat-body">
+          <h3>예산 감시</h3>
+          <p class="cat-desc">당신이 낸 세금이 제대로 쓰이는지 찾아내고 기록합니다.</p>
+          <ul class="cat-list">
+            <li>밑빠진 독상</li>
+            <li>지자체 재정 투명성</li>
+            <li>예산학교</li>
+          </ul>
+        </div>
       </div>
       <div class="cat-card">
-        <div class="cat-icon">🙋</div>
-        <h3>시민 참여</h3>
-        <p class="cat-desc">누구나 감시자가 될 수 있도록 참여의 길을 넓힙니다.</p>
-        <ul class="cat-list">
-          <li>주민참여예산</li>
-          <li>모니터링·개선</li>
-          <li>시민 교육</li>
-        </ul>
+        <img class="cat-photo" src="img/cat-participation.jpg" alt="시민 참여 활동 현장" loading="lazy">
+        <div class="cat-body">
+          <h3>시민 참여</h3>
+          <p class="cat-desc">누구나 예산 편성에 참여할 있으며, 시민행동은 참여예산 교육과 제도 개선에 힘 써왔습니다.</p>
+          <ul class="cat-list">
+            <li>주민참여예산</li>
+            <li>주민참여예산제 운영 평가제도 모니터링</li>
+            <li>주민 참여예산 시민 교육</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -1127,12 +1112,11 @@ footer {
       <div class="case-thumb"><img src="img/case-riverbus.jpg" alt="제40회 밑빠진 독상 — 서울시 한강 리버버스 사업" loading="lazy"></div>
       <span class="badge hot">제40회 밑빠진 독상</span>
       <h3>서울시 한강버스, 예정 예산의 3배를 넘긴 1,700억</h3>
-      <p>부실한 타당성 조사, 실패한 유사 사업의 반복. 정식 운행 열흘 만에 중단된 한강버스 사업을 추적하고 있습니다.</p>
+      <p>부실한 타당성 조사, 실패한 유사 사업의 반복. 정식 운행 열흘 만에 중단된 한강버스 사업을 추적했습니다.</p>
       <span class="go">자세히 보기 →</span>
     </a>
     <a class="case-card has-thumb" href="https://action.or.kr" target="_blank" rel="noopener" data-case="budget-request-win">
-      <!-- ⚠️ 임시 플레이스홀더 — 실제 사진으로 교체 -->
-      <div class="case-thumb ph"><span>사진 준비 중</span></div>
+      <div class="case-thumb"><img src="img/case-budgetwin.jpg" alt="기획재정부는 대법원 판결에 따라 예산요구서를 즉각 공개하라" loading="lazy"></div>
       <span class="badge">대법원 승소</span>
       <h3>정부 예산요구서, 사상 처음으로 공개됩니다</h3>
       <p>기획재정부를 상대로 한 행정소송에서 최종 승소. 각 부처의 예산요구서가 시민에게 공개되는 첫 판결을 이끌어냈습니다.</p>
@@ -1141,31 +1125,29 @@ footer {
     <a class="case-card has-thumb" href="https://action.or.kr" target="_blank" rel="noopener" data-case="special-fund">
       <div class="case-thumb"><img src="img/case-fund.jpg" alt="깜깜이 검찰 특수활동비 규탄 — 독에 꽂힌 모형 지폐" loading="lazy"></div>
       <span class="badge">특수활동비 감시</span>
-      <h3>깜깜이 검찰 특활비, 다시 켜진 72억의 경고등</h3>
-      <p>시민사회가 어렵게 삭감시킨 검찰 특수활동비가 2026년 예산안에 부활했습니다. 규탄 기자회견과 공수처 수사의뢰로 대응하고 있습니다.</p>
+      <h3>깜깜이 검찰 특활비, 다시 켜진 72억 경고등</h3>
+      <p>시민사회가 어렵게 삭감시킨 검찰 특수활동비가 2026년 예산안에 부활했습니다. 규탄 기자회견과 공수처 수사의뢰로 대응 했습니다.</p>
       <span class="go">자세히 보기 →</span>
     </a>
     <a class="case-card has-thumb" href="https://action.or.kr/17" target="_blank" rel="noopener" data-case="participatory-budget">
-      <!-- ⚠️ 임시 플레이스홀더 — 실제 사진으로 교체 -->
-      <div class="case-thumb ph"><span>사진 준비 중</span></div>
+      <div class="case-thumb"><img src="img/case-participatory.jpg" alt="주민참여예산 관련 회의 현장" loading="lazy"></div>
       <span class="badge">주민참여예산</span>
-      <h3>지자체 76%가 '개선 필요' — 주민참여예산제 감시</h3>
-      <p>행안부 평가에서 185개 지자체가 미흡 판정을 받았지만 평가지표는 오히려 축소됐습니다. 전국 운영 현황을 모니터링합니다.</p>
+      <h3>지자체 76%가 '개선 필요' — 주민참여예산제</h3>
+      <p>행안부 평가에서 185개 지자체가 미흡 판정을 받았지만 평가지표는 오히려 축소됐습니다. 시민행동은 전국 운영 현황을 모니터링합니다.</p>
       <span class="go">자세히 보기 →</span>
     </a>
     <a class="case-card has-thumb" href="https://action.or.kr/67" target="_blank" rel="noopener" data-case="transparency-index">
-      <!-- ⚠️ 임시 플레이스홀더 — 실제 사진으로 교체 -->
-      <div class="case-thumb ph"><span>사진 준비 중</span></div>
+      <div class="case-thumb"><img src="img/case-transparency.jpg" alt="국제예산협력파트너십 오픈예산조사 대한민국 결과" loading="lazy"></div>
       <span class="badge">재정투명성 지표</span>
       <h3>우리 동네 살림살이, 얼마나 투명한가요?</h3>
-      <p>국제 기준(OBS)을 지방자치단체에 적용하는 재정투명성 평가지표를 개발 중입니다. 2026년 새 지방정부의 변화를 겨냥합니다.</p>
+      <p>함께하는 시민행동은 2016년부터 2023년까지 중앙정부에 대한 예산투명성을 평가하고 국가간 비교를 통해 우리나라는 어느 정도의 위치에 놓여있는지, 무엇이 개선되어야 하는지를 확인하고 발표하였습니다.</p>
       <span class="go">자세히 보기 →</span>
     </a>
-    <a class="case-card has-thumb" href="https://action.or.kr" target="_blank" rel="noopener" data-case="bongnaesan">
+    <a class="case-card has-thumb" href="https://www.action.or.kr/27/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=167429283&t=board" target="_blank" rel="noopener" data-case="bongnaesan">
       <div class="case-thumb"><img src="img/case-bongnae.jpg" alt="영월 봉래산 명소화 사업 현장" loading="lazy"></div>
       <span class="badge">지역 감시</span>
-      <h3>영월 봉래산에 560억 — 회원의 제보에서 시작된 감시</h3>
-      <p>지방소멸대응기금이 본래 취지와 달리 개발사업에 쓰이고 있습니다. 지역 주민, 회원과 함께 현장에서 검증하고 있습니다.</p>
+      <h3>영월 봉래산에 560억, 회원의 제보에서 시작된 감시</h3>
+      <p>지방소멸대응기금이 본래 취지와 달리 개발사업에 쓰이고 사례를 추척해, 지역 주민, 회원과 함께 현장에서 검증했습니다.</p>
       <span class="go">자세히 보기 →</span>
     </a>
   </div>
@@ -1178,13 +1160,7 @@ footer {
 
 <section class="news" id="news">
   <h2>지금, 시민행동</h2>
-  <p class="news-sub">분야별 최신 소식 — 카드를 옆으로 넘겨보세요.</p>
-  <div class="news-tabs" role="tablist">
-    <button type="button" class="news-tab active" data-cat="budget-news">예산 뉴스</button>
-    <button type="button" class="news-tab" data-cat="participatory">참여예산</button>
-    <button type="button" class="news-tab" data-cat="study">예산 공부</button>
-    <button type="button" class="news-tab" data-cat="participation">시민 참여</button>
-  </div>
+  <p class="news-sub">최신 소식 — 카드를 옆으로 넘겨보세요.</p>
   <div class="news-track" id="news-track"></div>
   <div class="news-nav">
     <button type="button" id="news-prev" aria-label="이전">←</button>
@@ -1474,97 +1450,72 @@ if (!reduced && 'IntersectionObserver' in window) {
   });
 }
 
-// ───── 히어로 슬라이드 (메시지+사진 세트) ─────
-// ⚠️ 운영 방법: 첫 번째는 항상 '기본' 메시지. 이슈가 있을 때만 아래 배열에
-//    이슈 항목을 추가하면 자동 전환됨. 이슈가 없으면 기본 1개만 남겨두면
-//    슬라이드 없이 고정 히어로로 작동.
-const HERO_SLIDES = [
+// ───── 히어로 사진 슬라이드 (텍스트는 고정, 사진만 순환) ─────
+// ⚠️ 운영 방법: 사진을 추가/삭제하려면 아래 배열만 수정하면 됨.
+//    항목이 1개면 화살표·점 없이 고정 사진으로 작동.
+const HERO_PHOTOS = [
   {
-    eyebrow: '권력감시 · 예산감시 · 시민참여 · 1999년부터',
-    title: '당신이 낸 세금,<br><span class="hl">누가 지켜보고</span> 있을까요?<br>여기, 시민행동이 있습니다. <span class="plusone">+1!</span>',
-    sub: '함께하는 시민행동은 1999년부터 정부와 공공기관의 예산낭비를 찾아 기록하고, 바로잡아온 시민단체입니다. 뿐만 아니라 기업 감시와 정보인권을 위해 활동해왔습니다. 시민행동은 정부·기업의 지원 없이 오직 시민의 후원으로 움직입니다.',
-    cta: '시민 한 명 더하기 →',
-    ctaHref: '#donate',
-    subCta: '어떤 활동을 하나요?',
-    subCtaHref: '#work',
     img: 'img/hero-press.jpg',
     alt: '서울시청 앞 제40회 밑빠진 독상 기자회견',
     cap: '2025.3. 서울시청 앞, 제40회 밑빠진 독상 기자회견'
+  },
+  {
+    img: 'img/hero-election.jpg',
+    alt: '서울시청 앞 2026 지방선거 서울시민행동 출범 및 정책제안 기자회견',
+    cap: '2026.4. 서울시청 앞, 2026 지방선거 서울시민행동 출범 기자회견'
+  },
+  {
+    img: 'img/hero-forum.jpg',
+    alt: "'참여예산제의 길을 묻다' 국회 토론회 참가자 단체 사진",
+    cap: "2026.2. 국회 의원회관, '참여예산제의 길을 묻다' 토론회"
   }
-  // ── 숨김: '지금 이 이슈' 슬라이드. 다시 켜려면 위 항목 뒤에 쉼표 붙이고 아래 주석 해제 ──
-  // {
-  //   eyebrow: '지금 이 이슈',
-  //   title: '한강버스 <span class="hl">1,700억</span>.<br>뉴스 보고 화만 내다<br>끝난 적, 있죠?',
-  //   sub: '그 화를 감시로 바꾸는 방법이 있습니다. 27년째 정부·기업 돈을 한 푼도 받지 않고 세금의 행방을 추적해온 사람들이 있으니까요.',
-  //   cta: '월 1만 원으로 감시 시작하기',
-  //   ctaHref: '#donate',
-  //   subCta: '왜 시민이 지켜봐야 할까?',
-  //   subCtaHref: '#pain',
-  //   img: 'img/dok-hero.jpg',
-  //   alt: '검찰 특수활동비 규탄 — 모형 지폐가 꽂힌 밑빠진 독',
-  //   cap: '깜깜이 검찰 특수활동비 규탄 행동'
-  // }
 ];
 (function () {
-  const els = {
-    text: document.getElementById('hero-text'),
-    photo: document.getElementById('hero-photo'),
-    eyebrow: document.getElementById('he-eyebrow'),
-    title: document.getElementById('he-title'),
-    sub: document.getElementById('he-sub'),
-    cta: document.getElementById('he-cta'),
-    subCta: document.getElementById('he-sub-cta'),
-    img: document.getElementById('he-img'),
-    cap: document.getElementById('he-cap'),
-    dots: document.getElementById('he-dots')
-  };
+  const photo = document.getElementById('hero-photo');
+  const img = document.getElementById('he-img');
+  const cap = document.getElementById('he-cap');
+  const dots = document.getElementById('he-dots');
   let cur = 0, timer = null;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // 전환 시 깜빡임 방지를 위해 미리 로드
+  HERO_PHOTOS.forEach(p => { const pre = new Image(); pre.src = p.img; });
+
   function render(i) {
-    const s = HERO_SLIDES[i];
-    els.eyebrow.textContent = s.eyebrow;
-    els.title.innerHTML = s.title;
-    els.sub.textContent = s.sub;
-    els.cta.textContent = s.cta;
-    els.cta.setAttribute('href', s.ctaHref);
-    els.subCta.textContent = s.subCta;
-    els.subCta.setAttribute('href', s.subCtaHref);
-    els.img.src = s.img;
-    els.img.alt = s.alt;
-    els.cap.textContent = s.cap;
-    [...els.dots.children].forEach((d, di) => d.classList.toggle('active', di === i));
+    const s = HERO_PHOTOS[i];
+    img.src = s.img;
+    img.alt = s.alt;
+    cap.textContent = s.cap;
+    [...dots.children].forEach((d, di) => d.classList.toggle('active', di === i));
     cur = i;
   }
   function fadeTo(i) {
-    els.text.classList.add('he-fading');
-    els.photo.classList.add('he-fading');
+    photo.classList.add('he-fading');
     setTimeout(() => {
       render(i);
-      els.text.classList.remove('he-fading');
-      els.photo.classList.remove('he-fading');
+      photo.classList.remove('he-fading');
     }, 350);
   }
-  function next() { fadeTo((cur + 1) % HERO_SLIDES.length); }
+  function next() { fadeTo((cur + 1) % HERO_PHOTOS.length); }
   function start() {
-    if (!reducedMotion && HERO_SLIDES.length > 1) timer = setInterval(next, 7000);
+    if (!reducedMotion && HERO_PHOTOS.length > 1) timer = setInterval(next, 4000);
   }
   function stop() { if (timer) clearInterval(timer); }
 
-  if (HERO_SLIDES.length > 1) {
-    HERO_SLIDES.forEach((_, i) => {
+  if (HERO_PHOTOS.length > 1) {
+    HERO_PHOTOS.forEach((_, i) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'hp-dot';
-      b.setAttribute('aria-label', '화면 ' + (i + 1));
+      b.setAttribute('aria-label', '사진 ' + (i + 1));
       b.addEventListener('click', () => { stop(); fadeTo(i); start(); });
-      els.dots.appendChild(b);
+      dots.appendChild(b);
     });
     document.getElementById('he-prev').addEventListener('click', () => {
-      stop(); fadeTo((cur - 1 + HERO_SLIDES.length) % HERO_SLIDES.length); start();
+      stop(); fadeTo((cur - 1 + HERO_PHOTOS.length) % HERO_PHOTOS.length); start();
     });
     document.getElementById('he-next').addEventListener('click', () => {
-      stop(); fadeTo((cur + 1) % HERO_SLIDES.length); start();
+      stop(); fadeTo((cur + 1) % HERO_PHOTOS.length); start();
     });
   } else {
     document.getElementById('he-prev').style.display = 'none';
@@ -1572,64 +1523,37 @@ const HERO_SLIDES = [
   }
   render(0);
   start();
-  // 마우스 올리면 일시정지 (읽는 중 넘어가는 것 방지)
-  document.getElementById('hero').addEventListener('mouseenter', stop);
-  document.getElementById('hero').addEventListener('mouseleave', () => { stop(); start(); });
+  // 마우스 올리면 일시정지
+  photo.addEventListener('mouseenter', stop);
+  photo.addEventListener('mouseleave', () => { stop(); start(); });
 })();
 
-// ───── 지금, 시민행동 — 4탭 카드 슬라이더 ─────
-// ⚠️ 아래는 임시(예시) 데이터. 실제 글 제목·링크·날짜로 교체하거나,
-//    카테고리별 RSS가 있으면 자동 로딩으로 전환 가능.
-const NEWS_DATA = {
-  'budget-news': [
-    { title: '(예시) 2026년 예산안, 시민의 눈으로 본 쟁점 5가지', date: '2026-06-30', link: 'https://action.or.kr' },
-    { title: '(예시) 검찰 특수활동비 부활, 무엇이 문제인가', date: '2026-06-21', link: 'https://action.or.kr' },
-    { title: '(예시) 예산요구서 첫 공개 — 분석 결과 공유', date: '2026-06-10', link: 'https://action.or.kr' },
-    { title: '(예시) 지방소멸대응기금, 취지대로 쓰이고 있나', date: '2026-05-28', link: 'https://action.or.kr' }
-  ],
-  'participatory': [
-    { title: '(예시) 행안부 주민참여예산 평가지표 개편 모니터링', date: '2026-06-25', link: 'https://action.or.kr' },
-    { title: '(예시) 우리 동네 참여예산, 이렇게 신청하세요', date: '2026-06-12', link: 'https://action.or.kr' },
-    { title: '(예시) 참여예산 우수 지자체 사례 살펴보기', date: '2026-05-30', link: 'https://action.or.kr' }
-  ],
-  'study': [
-    { title: '(예시) 예산서 읽는 법 — 처음 시작하는 사람을 위한 안내', date: '2026-06-18', link: 'https://action.or.kr' },
-    { title: '(예시) 특수활동비·업무추진비, 뭐가 다를까', date: '2026-06-05', link: 'https://action.or.kr' },
-    { title: '(예시) 재정투명성 국제 기준(OBS) 알아보기', date: '2026-05-22', link: 'https://action.or.kr' }
-  ],
-  'participation': [
-    { title: '(예시) 제41회 밑빠진 독상 시민 제보 받습니다', date: '2026-06-28', link: 'dokseong.html#report' },
-    { title: '(예시) 예산감시 시민 모임 참가자 모집', date: '2026-06-15', link: 'https://action.or.kr' },
-    { title: '(예시) 회원과 함께한 현장 탐방 후기', date: '2026-06-01', link: 'https://action.or.kr' }
-  ]
-};
-const catNames = { 'budget-news': '예산 뉴스', 'participatory': '참여예산', 'study': '예산 공부', 'participation': '시민 참여' };
-function renderNews(cat) {
+// ───── 지금, 시민행동 — RSS 연동 최신 소식 카드 ─────
+// data/news.json은 scripts/fetch-news.mjs가 홈페이지 RSS(action.or.kr/rss)를
+// 읽어 생성/갱신함 (GitHub Actions로 주기 실행). 실패 시 아래 폴백 데이터 사용.
+const NEWS_FALLBACK = [
+  { title: '홈페이지에서 최신 소식을 확인해 주세요', date: '', link: 'https://action.or.kr' }
+];
+function renderNews(items) {
   const track = document.getElementById('news-track');
-  track.innerHTML = NEWS_DATA[cat].map(it => `
-    <a class="news-card" href="${it.link}" ${it.link.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>
-      <span class="nc-cat">${catNames[cat]}</span>
+  track.innerHTML = items.map(it => `
+    <a class="news-card" href="${it.link}" target="_blank" rel="noopener">
       <span class="nc-title">${it.title}</span>
       <span class="nc-date">${it.date}</span>
     </a>`).join('');
   track.scrollTo({ left: 0 });
   setupLoop(track);
 }
-document.querySelectorAll('.news-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.news-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    renderNews(tab.dataset.cat);
-    track('select_news_tab', { category: tab.dataset.cat });
-  });
-});
+fetch('data/news.json')
+  .then(res => res.ok ? res.json() : Promise.reject())
+  .then(items => renderNews(items && items.length ? items : NEWS_FALLBACK))
+  .catch(() => renderNews(NEWS_FALLBACK));
 document.getElementById('news-prev').addEventListener('click', () => {
   loopScrollBy(document.getElementById('news-track'), -300);
 });
 document.getElementById('news-next').addEventListener('click', () => {
   loopScrollBy(document.getElementById('news-track'), 300);
 });
-renderNews('budget-news');
 
 // ───── 트랙 무한 루프 (케이스·뉴스 공통) ─────
 // 카드를 한 세트 복제해 뒤에 붙이고, 스크롤 위치를 프레임 단위로 직접 제어.
