@@ -9,6 +9,7 @@
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://resource.stibee.com/subscribe/stb_subscribe_form_style.css">
 <style>
 @font-face {
   font-family: 'GmarketSans';
@@ -75,6 +76,11 @@ a { color: inherit; }
   text-decoration: none;
 }
 .topbar .org img { height: 26px; display: block; }
+.topbar .top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .topbar .top-cta {
   font-family: 'GmarketSans', sans-serif;
   font-weight: 700;
@@ -87,6 +93,19 @@ a { color: inherit; }
   transition: background 0.15s;
 }
 .topbar .top-cta:hover { background: var(--brand-deep); }
+.topbar .top-cta-sub {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--brand-deep);
+  background: transparent;
+  border: 1.5px solid var(--brand);
+  text-decoration: none;
+  padding: 8.5px 16px;
+  border-radius: 999px;
+  transition: background 0.15s;
+}
+.topbar .top-cta-sub:hover { background: var(--brand-tint); }
 
 /* ───────── Hero ───────── */
 .hero {
@@ -528,6 +547,148 @@ a { color: inherit; }
   color: var(--brand-deep);
 }
 
+/* ───────── CTA Triple (참여 3단계) ───────── */
+.cta-triple {
+  background: linear-gradient(180deg, #fff 0%, var(--brand-tint) 100%);
+  padding: 88px 24px 96px;
+}
+.cta-triple-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-triple h2 {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3.4vw, 34px);
+  line-height: 1.35;
+  margin-bottom: 12px;
+  word-break: keep-all;
+}
+.cta-triple-sub {
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+  word-break: keep-all;
+}
+.cta-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  text-align: left;
+}
+.cta-card {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 26px;
+  box-shadow: 0 8px 28px rgba(13,28,38,0.08);
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid transparent;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-card:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(13,28,38,0.12); }
+.cta-num {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--brand-deep);
+  background: var(--brand-tint);
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.cta-card h3 {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  margin-bottom: 8px;
+  word-break: keep-all;
+}
+.cta-card-desc {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 22px;
+  word-break: keep-all;
+  flex: 1;
+}
+.cta-card-btn {
+  display: block;
+  text-align: center;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--brand-deep);
+  background: transparent;
+  border: 1.5px solid var(--brand);
+  border-radius: 12px;
+  padding: 13px 0;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.cta-card-btn:hover { background: var(--brand-tint); }
+.cta-card-primary { border-color: var(--brand); background: linear-gradient(180deg, #fff 0%, #f4fbff 100%); }
+.cta-card-primary .cta-num { color: #fff; background: var(--brand); }
+.cta-card-btn-primary {
+  color: #fff;
+  background: var(--brand);
+  border-color: var(--brand);
+  box-shadow: 0 4px 14px rgba(0,175,236,0.28);
+}
+.cta-card-btn-primary:hover { background: var(--brand-deep); border-color: var(--brand-deep); }
+.cta-share-row { display: flex; gap: 8px; }
+.cta-share-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--ink);
+  background: #f4f8fa;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.cta-share-btn:hover { border-color: var(--brand); background: var(--brand-tint); }
+.cta-share-kakao { color: #7a6b1d; background: #FEE500; border-color: #FEE500; }
+.cta-share-kakao:hover { background: #f5dc00; border-color: #f5dc00; }
+.cta-share-kakao[disabled], .cta-share-kakao.disabled {
+  opacity: 0.5; cursor: not-allowed;
+}
+.cta-share-ico { font-size: 15px; line-height: 1; }
+
+/* ───────── Toast ───────── */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 96px;
+  transform: translate(-50%, 20px);
+  z-index: 100;
+  background: var(--ink);
+  color: #fff;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(13,28,38,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 /* ───────── Donate ───────── */
 .donate {
   background: linear-gradient(160deg, var(--brand) 0%, #0092d6 60%, #0080c4 100%);
@@ -665,9 +826,9 @@ a { color: inherit; }
   word-break: keep-all;
 }
 
-/* ───────── Newsletter ───────── */
+/* ───────── Newsletter (스티비 임베드) ───────── */
 .newsletter {
-  max-width: 760px;
+  max-width: 520px;
   margin: 0 auto;
   padding: 96px 24px;
   text-align: center;
@@ -678,41 +839,69 @@ a { color: inherit; }
   margin-bottom: 32px;
   word-break: keep-all;
 }
-.email-form {
-  display: flex;
-  gap: 10px;
-  max-width: 520px;
-  margin: 0 auto;
+/* 스티비 기본 스타일을 브랜드 톤에 맞게 재정의 */
+#stb_subscribe { text-align: left; }
+#stb_subscribe .stb_form_set { margin-bottom: 16px; }
+#stb_subscribe .stb_form_set_label {
+  display: block;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 8px;
 }
-.email-form input {
-  flex: 1;
-  padding: 17px 20px;
+#stb_subscribe .stb_asterisk { color: var(--brand); margin-left: 2px; }
+#stb_subscribe .stb_form_set_input {
+  width: 100%;
+  padding: 15px 18px;
   border: 1.5px solid var(--line);
   border-radius: 14px;
   font-size: 15px;
   font-family: inherit;
+  box-sizing: border-box;
 }
-.email-form input:focus { outline: 2px solid var(--brand); border-color: transparent; }
-.email-form button {
+#stb_subscribe .stb_form_set_input:focus { outline: 2px solid var(--brand); border-color: transparent; }
+#stb_subscribe .stb_form_msg_error { color: var(--alert); font-size: 12.5px; margin-top: 6px; }
+#stb_subscribe .stb_form_policy {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+#stb_subscribe .stb_form_policy input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: var(--brand);
+  flex-shrink: 0;
+}
+#stb_subscribe .stb_form_modal_open_btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--brand-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+#stb_subscribe .stb_form_set_submit { margin-top: 22px; }
+#stb_subscribe .stb_form_submit_button {
+  width: 100%;
   font-family: 'GmarketSans', sans-serif;
   font-weight: 700;
   font-size: 15px;
-  color: #fff;
-  background: var(--brand);
+  color: #fff !important;
+  background: var(--brand) !important;
   border: none;
   border-radius: 14px;
-  padding: 0 28px;
+  padding: 17px 0;
   cursor: pointer;
-  white-space: nowrap;
   transition: background 0.15s;
 }
-.email-form button:hover { background: var(--brand-deep); }
-.email-done {
-  display: none;
-  margin-top: 18px;
-  font-weight: 700;
-  color: var(--brand-deep);
-}
+#stb_subscribe .stb_form_submit_button:hover { background: var(--brand-deep) !important; }
+#stb_subscribe .stb_form_modal_text { word-break: keep-all; line-height: 1.6; }
 .email-privacy { margin-top: 16px; font-size: 12.5px; color: var(--ink-soft); }
 
 /* ───────── Footer ───────── */
@@ -926,7 +1115,7 @@ footer {
   .sticky-cta.hidden { display: none; }
   body { padding-bottom: 76px; }
   .topbar { padding: 12px 16px; }
-  .topbar .top-cta { display: none; }
+  .topbar .top-cta, .topbar .top-cta-sub { display: none; }
   .hero { padding: 40px 20px 48px; grid-template-columns: 1fr; gap: 32px; }
   .hero-photo { order: -1; }
   .hero-photo img { aspect-ratio: 16/10; }
@@ -942,6 +1131,8 @@ footer {
   .case-card.has-thumb { padding-top: 0; }
   .case-thumb { margin: 0 -22px 20px; height: 160px; }
   .donate { padding: 64px 20px; }
+  .cta-triple { padding: 56px 20px 72px; }
+  .cta-cards { grid-template-columns: 1fr; }
   .donate-form { padding: 30px 22px; }
   .newsletter { padding: 64px 20px; }
   .mv-grid { grid-template-columns: 1fr; }
@@ -959,8 +1150,6 @@ footer {
   .ps { padding: 0 20px 72px; }
   .ps-box { padding: 26px 22px; }
   .donate-inner { grid-template-columns: 1fr; gap: 40px; }
-  .email-form { flex-direction: column; }
-  .email-form button { padding: 16px 0; }
 }
 
 :focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
@@ -982,7 +1171,10 @@ footer {
     <img src="img/logo.png" alt="함께하는 시민행동 로고">
     함께하는 시민행동
   </a>
-  <a class="top-cta" href="#donate">후원하기</a>
+  <div class="top-actions">
+    <a class="top-cta-sub" href="#newsletter">소식받기</a>
+    <a class="top-cta" href="#donate">후원하기</a>
+  </div>
 </header>
 
 <section class="hero" id="hero">
@@ -1191,6 +1383,44 @@ footer {
   </div>
 </section>
 
+<section class="cta-triple" id="join">
+  <div class="cta-triple-inner">
+    <h2>지금, 시민행동에 함께하는 3가지 방법</h2>
+    <p class="cta-triple-sub">가벼운 것부터 시작해도 좋습니다. 어떤 참여든 시민행동에는 힘이 됩니다.</p>
+    <div class="cta-cards">
+      <div class="cta-card">
+        <div class="cta-num">1</div>
+        <h3>친구에게 알리기</h3>
+        <p class="cta-card-desc">30초면 됩니다. 이 페이지를 주변에 공유해 주세요.</p>
+        <div class="cta-share-row">
+          <button type="button" class="cta-share-btn cta-share-kakao" id="share-kakao" title="카카오톡 공유 (준비 중)" aria-label="카카오톡 공유 준비 중">
+            <span class="cta-share-ico" aria-hidden="true">💬</span>
+            <span>카카오톡</span>
+          </button>
+          <button type="button" class="cta-share-btn cta-share-copy" id="share-copy">
+            <span class="cta-share-ico" aria-hidden="true">🔗</span>
+            <span>링크 복사</span>
+          </button>
+        </div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-num">2</div>
+        <h3>소식으로 만나기</h3>
+        <p class="cta-card-desc">매달 한 통, 예산감시 소식과 활동 이야기를 이메일로 보내드립니다.</p>
+        <a class="cta-card-btn" href="#newsletter" data-action="subscribe">뉴스레터 구독하기 →</a>
+      </div>
+      <div class="cta-card cta-card-primary">
+        <div class="cta-num">3</div>
+        <h3>감시자로 함께하기</h3>
+        <p class="cta-card-desc">월 1만 원부터. 시민의 후원이 27년째 시민행동을 움직이는 힘입니다.</p>
+        <a class="cta-card-btn cta-card-btn-primary" href="#donate" data-action="donate">후원으로 함께하기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <section class="donate" id="donate">
   <div class="donate-inner">
     <div class="donate-copy">
@@ -1239,13 +1469,77 @@ footer {
   <p>
     예산감시 소식과 활동 이야기를 이메일로 보내드립니다.
   </p>
-  <form class="email-form" id="email-form">
-    <input type="email" id="email-input" placeholder="이메일 주소를 입력해 주세요" required aria-label="이메일 주소">
-    <button type="submit">소식 받기</button>
-  </form>
-  <p class="email-done" id="email-done">신청되었습니다. 곧 소식으로 찾아뵐게요!</p>
+  <div id="stb_subscribe">
+    <form action="https://stibee.com/api/v1.0/lists/i2kxt4l2oVkd9DLWMV8LVupmkvw=/public/subscribers" method="POST" target="_blank" accept-charset="utf-8" class="stb_form" name="stb_subscribe_form" id="stb_subscribe_form" data-lang="" novalidate>
+      <fieldset class="stb_form_set">
+        <label for="stb_email" class="stb_form_set_label">
+          이메일 주소<span class="stb_asterisk">*</span>
+        </label>
+        <input type="text" class="stb_form_set_input" id="stb_email" name="email" required="required">
+        <div class="stb_form_msg_error" id="stb_email_error"></div>
+      </fieldset>
+
+      <fieldset class="stb_form_set">
+        <label for="stb_name" class="stb_form_set_label">
+          이름<span class="stb_asterisk">*</span>
+        </label>
+        <input type="text" class="stb_form_set_input" id="stb_name" name="name" required="required">
+        <div class="stb_form_msg_error" id="stb_name_error"></div>
+      </fieldset>
+
+      <div class="stb_form_policy">
+        <label>
+          <input type="checkbox" id="stb_policy" value="stb_policy_true">
+          <span>(필수)</span>
+          <button id="stb_form_modal_open" data-modal="stb_form_policy_modal" class="stb_form_modal_open_btn" type="button">개인정보 수집 및 이용</button>에 동의합니다.
+        </label>
+        <div class="stb_form_msg_error" id="stb_policy_error"></div>
+        <div class="stb_form_modal stb_form_policy_text blind" id="stb_form_policy_modal">
+          <div class="stb_form_modal_body">
+            <h1 class="stb_form_modal_title">
+              개인정보 수집 및 이용
+            </h1>
+            <div class="stb_form_modal_text">뉴스레터 발송을 위한 최소한의 개인정보를 수집하고 이용합니다.
+수집된 정보는 발송 외 다른 목적으로 이용되지 않으며, 서비스가 종료되거나 구독을 해지할 경우 즉시 파기됩니다.</div>
+            <div class="stb_form_modal_btn">
+              <button id="stb_form_modal_close" class="stb_form_modal_close_btn" data-modal="stb_form_policy_modal" type="button">닫기</button>
+            </div>
+          </div>
+          <div class="stb_form_modal_bg" id="stb_form_modal_bg"></div>
+        </div>
+      </div>
+
+      <div class="stb_form_policy">
+        <label>
+          <input type="checkbox" id="stb_ad_agreement" value="stb_ad_agreement_true" required="required">
+          <span>(필수)</span>
+          <button id="stb_form_ad_modal_open" data-modal="stb_form_ad_agreemnet_modal" class="stb_form_modal_open_btn" type="button">광고성 정보 수신</button>에 동의합니다.
+        </label>
+        <div class="stb_form_msg_error" id="stb_ad_agreement_error"></div>
+        <div class="stb_form_modal stb_form_policy_text blind" id="stb_form_ad_agreemnet_modal">
+          <div class="stb_form_modal_body">
+            <h1 class="stb_form_modal_title">
+              광고성 정보 수신
+            </h1>
+            <div class="stb_form_modal_text">제휴 콘텐츠, 프로모션, 이벤트 정보 등의 광고성 정보를 수신합니다.</div>
+            <div class="stb_form_modal_btn">
+              <button id="stb_form_ad_modal_close" class="stb_form_modal_close_btn" data-modal="stb_form_ad_agreemnet_modal" type="button">닫기</button>
+            </div>
+          </div>
+          <div class="stb_form_ad_modal_bg" id="stb_form_modal_bg"></div>
+        </div>
+      </div>
+
+      <div class="stb_form_result" id="stb_form_result"></div>
+
+      <fieldset class="stb_form_set_submit">
+        <button type="submit" class="stb_form_submit_button" id="stb_form_submit_button">구독하기</button>
+      </fieldset>
+    </form>
+  </div>
   <p class="email-privacy">이메일은 소식지 발송 목적으로만 사용됩니다.</p>
 </section>
+<script type="text/javascript" src="https://resource.stibee.com/subscribe/stb_subscribe_form.js"></script>
 
 <section class="faq" id="faq">
   <h2>자주 묻는 질문</h2>
@@ -1391,23 +1685,9 @@ document.getElementById('donate-go').addEventListener('click', () => {
 });
 
 // ───── 이메일 수집 ─────
-// ⚠️ 구글 폼 연동 시: FORM_ACTION_URL과 entry ID를 실제 값으로 교체
-const GOOGLE_FORM = {
-  action: '', // 예: https://docs.google.com/forms/d/e/xxxx/formResponse
-  emailEntry: '' // 예: entry.123456789
-};
-document.getElementById('email-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = document.getElementById('email-input').value.trim();
-  if (!email) return;
+// ───── 뉴스레터 구독 — 스티비 폼 제출 시 GA 이벤트만 기록 (실제 제출은 스티비가 처리) ─────
+document.getElementById('stb_subscribe_form').addEventListener('submit', () => {
   track('submit_email', {});
-  if (GOOGLE_FORM.action && GOOGLE_FORM.emailEntry) {
-    const fd = new FormData();
-    fd.append(GOOGLE_FORM.emailEntry, email);
-    fetch(GOOGLE_FORM.action, { method: 'POST', mode: 'no-cors', body: fd });
-  }
-  document.getElementById('email-form').style.display = 'none';
-  document.getElementById('email-done').style.display = 'block';
 });
 
 // ───── 사례 카드 클릭 추적 ─────
@@ -1670,6 +1950,85 @@ if (stickyCta && donateSection && 'IntersectionObserver' in window) {
   }, { threshold: 0.15 }).observe(donateSection);
 }
 document.querySelector('.sticky-cta a')?.addEventListener('click', () => track('click_sticky_cta', {}));
+
+// ───── 참여 3단계 CTA 블록 ─────
+// 링크복사: 공유용 URL에 UTM 붙여 클립보드에 복사, 토스트로 안내
+// 카톡 공유: 카카오 JavaScript 키 발급 전까지는 안내 토스트만 (아래 KAKAO_KEY에 키 채우고 initKakao 호출 시 활성화)
+const KAKAO_KEY = ''; // TODO: Kakao Developers에서 JavaScript 키 발급 후 채우기
+const SHARE_BASE_URL = window.location.origin + window.location.pathname;
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+function buildShareUrl(medium) {
+  const url = new URL(SHARE_BASE_URL);
+  url.searchParams.set('utm_source', 'share');
+  url.searchParams.set('utm_medium', medium);
+  url.searchParams.set('utm_campaign', 'member_recruit');
+  return url.toString();
+}
+
+async function copyShareLink() {
+  const url = buildShareUrl('copy_link');
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(url);
+    } else {
+      // 폴백: 임시 textarea로 복사
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    toast('링크가 복사되었어요!');
+    track('click_share_copy', {});
+  } catch (e) {
+    toast('복사에 실패했어요. 주소창의 URL을 직접 복사해 주세요.');
+  }
+}
+
+document.getElementById('share-copy')?.addEventListener('click', copyShareLink);
+document.getElementById('share-kakao')?.addEventListener('click', () => {
+  // 카톡 키 발급 전까지 안내 (발급 후에는 아래 블록 대신 Kakao.Share.sendDefault 사용)
+  if (!KAKAO_KEY) {
+    toast('카카오톡 공유는 준비 중이에요. 링크 복사로 공유해 주세요!');
+    track('click_share_kakao_pending', {});
+    return;
+  }
+  // 키 있을 때: 카카오 SDK가 로드되어 있다고 가정
+  if (window.Kakao && Kakao.Share) {
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '당신이 낸 세금, 누가 지켜보고 있을까요?',
+        description: '1999년부터 정부·기업 지원 없이 시민의 힘으로 예산을 감시해온 함께하는 시민행동.',
+        imageUrl: SHARE_BASE_URL.replace(/\/$/, '') + '/img/hero-press.jpg',
+        link: { mobileWebUrl: buildShareUrl('kakao'), webUrl: buildShareUrl('kakao') }
+      },
+      buttons: [{ title: '함께하기', link: { mobileWebUrl: buildShareUrl('kakao'), webUrl: buildShareUrl('kakao') } }]
+    });
+    track('click_share_kakao', {});
+  }
+});
+
+// 3단계 카드 CTA 클릭 트래킹 (구독·후원 버튼)
+document.querySelectorAll('.cta-card [data-action]').forEach(el => {
+  el.addEventListener('click', () => track('click_action_' + el.dataset.action, {}));
+});
+
+// 상단바 CTA 클릭 트래킹
+document.querySelector('.topbar .top-cta')?.addEventListener('click', () => track('click_top_donate', {}));
+document.querySelector('.topbar .top-cta-sub')?.addEventListener('click', () => track('click_top_subscribe', {}));
 
 updateImpact();
 </script>
