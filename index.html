@@ -305,6 +305,8 @@ a { color: inherit; }
   margin-bottom: 20px;
   word-break: keep-all;
 }
+/* ⚠️ 위 .about h2 규칙이 .about-title보다 뒤에 있어 여백을 덮어씀. 아래에서 다시 지정. */
+.about h2.about-title { margin-bottom: 32px; }
 .about p {
   font-size: 18px;
   color: var(--ink-soft);
@@ -1208,7 +1210,8 @@ footer {
   <div class="pain-inner">
     <h2>이런 고민, 있지 않나요?</h2>
     <!-- ⚠️ 고민 문구는 초안. 실제 활동과 매칭해 수정 -->
-    <div class="worry-grid">
+    <!-- 모바일에서는 아래 6개 중 3개만 랜덤 노출됨 (페이지 하단 스크립트) -->
+    <div class="worry-grid" id="worry-grid">
       <div class="worry-card">
         <span class="w-age">20대</span>
         <p class="w-q">"취업도 어렵고 어떻게 살아야 할지 모르겠어. <strong>국가가 날 어떻게 보호하고 있는지, 이런 정책 구조를 쉽게 알려주는 곳 없나?</strong>"</p>
@@ -1368,7 +1371,7 @@ footer {
 </section>
 
 <section class="about">
-  <h2 class="about-title">함께하는 시민행동의</h2>
+  <h2 class="about-title">함께하는 시민행동의 <span class="accent">미션과 비전</span></h2>
   <div class="mv-grid">
     <div class="mv-card">
       <div class="mv-label">MISSION</div>
@@ -1842,6 +1845,34 @@ const HERO_PHOTOS = [
   // 마우스 올리면 일시정지
   photo.addEventListener('mouseenter', stop);
   photo.addEventListener('mouseleave', () => { stop(); start(); });
+})();
+
+// ───── 모바일: 고민 카드 6개 중 3개만 랜덤 노출 ─────
+// 방문(새로고침)할 때마다 다른 조합이 보이도록. PC(821px 이상)는 6개 전부 노출.
+// 노출 개수를 바꾸려면 SHOW 값만 수정.
+(function () {
+  const grid = document.getElementById('worry-grid');
+  if (!grid) return;
+  const cards = [...grid.querySelectorAll('.worry-card')];
+  const mq = window.matchMedia('(max-width: 820px)');
+  const SHOW = 3;
+
+  function apply() {
+    if (!mq.matches) {
+      cards.forEach(c => { c.style.display = ''; });
+      return;
+    }
+    const picked = new Set();
+    while (picked.size < Math.min(SHOW, cards.length)) {
+      picked.add(Math.floor(Math.random() * cards.length));
+    }
+    cards.forEach((c, i) => { c.style.display = picked.has(i) ? '' : 'none'; });
+  }
+
+  apply();
+  // 화면 크기가 바뀌면(회전·창 조절) 다시 계산
+  if (mq.addEventListener) mq.addEventListener('change', apply);
+  else mq.addListener(apply);
 })();
 
 // ───── 지금, 시민행동 — RSS 연동 최신 소식 카드 ─────
