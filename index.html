@@ -1172,6 +1172,11 @@ footer {
   gtag('js', new Date());
   gtag('config', 'G-9E47NN3MLY');
 </script>
+
+<!-- 카카오 SDK (공유하기용) -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+        integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+        crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -1403,7 +1408,7 @@ footer {
         <h3>친구에게 알리기</h3>
         <p class="cta-card-desc">30초면 됩니다. 이 페이지를 주변에 공유해 주세요.</p>
         <div class="cta-share-row">
-          <button type="button" class="cta-share-btn cta-share-kakao" id="share-kakao" title="카카오톡 공유 (준비 중)" aria-label="카카오톡 공유 준비 중">
+          <button type="button" class="cta-share-btn cta-share-kakao" id="share-kakao" aria-label="카카오톡으로 공유하기">
             <span class="cta-share-ico" aria-hidden="true">💬</span>
             <span>카카오톡</span>
           </button>
@@ -2020,8 +2025,15 @@ document.querySelector('.sticky-cta a')?.addEventListener('click', () => track('
 
 // ───── 참여 3단계 CTA 블록 ─────
 // 링크복사: 공유용 URL에 UTM 붙여 클립보드에 복사, 토스트로 안내
-// 카톡 공유: 카카오 JavaScript 키 발급 전까지는 안내 토스트만 (아래 KAKAO_KEY에 키 채우고 initKakao 호출 시 활성화)
-const KAKAO_KEY = ''; // TODO: Kakao Developers에서 JavaScript 키 발급 후 채우기
+// 카톡 공유: Kakao Developers JavaScript 키로 SDK 초기화 후 sendDefault 호출
+// ⚠️ Kakao Developers > 앱 > 플랫폼 > Web 에 아래 도메인이 등록되어 있어야 동작함
+//    - https://donate.action.or.kr
+//    - https://action.or.kr
+//    - (로컬 테스트 시) http://localhost:포트
+const KAKAO_KEY = '8bcf534f5078752c596da05b9e474f20';
+if (KAKAO_KEY && window.Kakao && !window.Kakao.isInitialized()) {
+  window.Kakao.init(KAKAO_KEY);
+}
 const SHARE_BASE_URL = window.location.origin + window.location.pathname;
 
 function toast(msg) {
@@ -2066,25 +2078,29 @@ async function copyShareLink() {
 
 document.getElementById('share-copy')?.addEventListener('click', copyShareLink);
 document.getElementById('share-kakao')?.addEventListener('click', () => {
-  // 카톡 키 발급 전까지 안내 (발급 후에는 아래 블록 대신 Kakao.Share.sendDefault 사용)
-  if (!KAKAO_KEY) {
-    toast('카카오톡 공유는 준비 중이에요. 링크 복사로 공유해 주세요!');
-    track('click_share_kakao_pending', {});
+  // SDK 미로딩·초기화 실패 시 링크 복사로 유도
+  if (!window.Kakao || !window.Kakao.isInitialized() || !window.Kakao.Share) {
+    toast('카카오톡 공유를 열 수 없어요. 링크 복사로 공유해 주세요!');
+    track('click_share_kakao_fail', {});
     return;
   }
-  // 키 있을 때: 카카오 SDK가 로드되어 있다고 가정
-  if (window.Kakao && Kakao.Share) {
-    Kakao.Share.sendDefault({
+  const shareUrl = buildShareUrl('kakao');
+  try {
+    window.Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
         title: '당신이 낸 세금, 누가 지켜보고 있을까요?',
         description: '1999년부터 정부·기업 지원 없이 시민의 힘으로 예산을 감시해온 함께하는 시민행동.',
-        imageUrl: SHARE_BASE_URL.replace(/\/$/, '') + '/img/hero-press.jpg',
-        link: { mobileWebUrl: buildShareUrl('kakao'), webUrl: buildShareUrl('kakao') }
+        // ⚠️ 썸네일은 외부에서 접근 가능한 절대 URL이어야 함 (localhost에서는 안 뜸)
+        imageUrl: new URL('img/hero-press.jpg', SHARE_BASE_URL).href,
+        link: { mobileWebUrl: shareUrl, webUrl: shareUrl }
       },
-      buttons: [{ title: '함께하기', link: { mobileWebUrl: buildShareUrl('kakao'), webUrl: buildShareUrl('kakao') } }]
+      buttons: [{ title: '함께하기', link: { mobileWebUrl: shareUrl, webUrl: shareUrl } }]
     });
     track('click_share_kakao', {});
+  } catch (e) {
+    toast('카카오톡 공유를 열 수 없어요. 링크 복사로 공유해 주세요!');
+    track('click_share_kakao_fail', {});
   }
 });
 
