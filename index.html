@@ -7,6 +7,26 @@
 <title>당신의 세금, 누가 지켜보고 있습니까 — 함께하는 시민행동</title>
 <meta name="description" content="1999년부터 정부·기업 지원 없이 시민의 힘으로 예산을 감시해온 함께하는 시민행동. 후원으로 함께해 주세요.">
 
+<!-- 링크 미리보기(카카오톡·페이스북·X 등). 이 페이지는 링크로 퍼지는 게 전제라
+     이게 없으면 주소만 덩그러니 뜬다.
+     ⚠️ og:image는 반드시 전체 주소여야 하고, 이미지를 바꾸면 width/height도 같이 고칠 것.
+     ⚠️ 이미지를 교체해도 카카오톡은 예전 것을 오래 캐시함. 카카오 디벨로퍼스의
+        '캐시 초기화'에서 https://donate.action.or.kr/ 를 새로 읽게 해야 함. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="함께하는 시민행동">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://donate.action.or.kr/">
+<meta property="og:title" content="당신의 세금, 누가 지켜보고 있습니까">
+<meta property="og:description" content="1999년부터 정부·기업 지원 없이, 오직 시민의 후원으로 예산을 감시해온 함께하는 시민행동.">
+<meta property="og:image" content="https://donate.action.or.kr/img/hero-election.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="서울시청 앞 2026 지방선거 서울시민행동 출범 기자회견">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="당신의 세금, 누가 지켜보고 있습니까">
+<meta name="twitter:description" content="1999년부터 정부·기업 지원 없이, 오직 시민의 후원으로 예산을 감시해온 함께하는 시민행동.">
+<meta name="twitter:image" content="https://donate.action.or.kr/img/hero-election.jpg">
+
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://resource.stibee.com/subscribe/stb_subscribe_form_style.css">
@@ -36,7 +56,12 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* 상단바가 sticky라, 앵커로 이동하면 도착한 곳의 제목이 상단바 밑에 깔린다.
+     그만큼 미리 멈추게 하는 값. 상단바 높이(약 56px)에 여유를 더한 것. */
+  scroll-padding-top: 76px;
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -106,6 +131,130 @@ a { color: inherit; }
   transition: background 0.15s;
 }
 .topbar .top-cta-sub:hover { background: var(--brand-tint); }
+
+/* ───────── Cover — 링크로 들어온 사람이 처음 보는 한 장 ─────────
+   후원하기 버튼 하나와 하는 일 소개만 둔다. 금액 선택은 아래 #donate 폼이 맡음.
+   아래로 내리면 기존 페이지(#hero부터)가 그대로 이어짐. */
+.cover {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: clamp(56px, 10vh, 104px) 24px clamp(32px, 6vh, 56px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 7vw, 88px);
+  align-items: center;
+  min-height: calc(100vh - 200px);
+}
+.cover-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 3.2vw, 38px);
+  color: #fff;
+  background: var(--brand);
+  text-decoration: none;
+  padding: clamp(28px, 3.6vw, 40px) clamp(44px, 6vw, 72px);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0,175,236,0.4);
+  transition: background 0.15s, transform 0.15s;
+}
+.cover-btn:hover { background: var(--brand-deep); transform: translateY(-3px); }
+.cover-trust {
+  margin-top: 22px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-deep);
+  line-height: 1.75;
+}
+.cover-plusone {
+  margin-top: 14px;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.6;
+  word-break: keep-all;
+}
+.cover-plusone .you { color: var(--brand); }
+.cover-tax {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.cover-work-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.cover-work-list { border-top: 1px solid var(--line); }
+.cover-work-item {
+  display: block;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: padding-left 0.15s;
+}
+.cover-work-item:hover { padding-left: 8px; }
+.cover-work-item h3 {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.cover-work-item h3::after {
+  content: '→';
+  color: var(--brand);
+  margin-left: 8px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.cover-work-item:hover h3::after { opacity: 1; }
+.cover-work-item p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.cover-more {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
+.cover-more a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.cover-more a:hover { color: var(--brand-deep); }
+.cover-more .arr { animation: coverBob 1.8s ease-in-out infinite; }
+@keyframes coverBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cover-more .arr { animation: none; }
+}
+@media (max-width: 820px) {
+  .cover {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    min-height: 0;
+    padding: 40px 20px 28px;
+  }
+  .cover-btn { width: 100%; font-size: 24px; padding: 26px 20px; }
+  .cover-trust { text-align: center; }
+}
 
 /* ───────── Hero ───────── */
 .hero {
@@ -1198,6 +1347,55 @@ footer {
   </div>
 </header>
 
+<!-- ───── Cover — 링크로 들어온 사람이 처음 보는 한 장 ─────
+     아래 기존 페이지는 그대로 두고 앞에만 얹은 화면. 내리면 #hero부터 이어짐.
+     후원하기 버튼은 아래 후원 폼(#donate)으로 보냄 — 금액 선택은 거기서 함.
+     ⚠️ 사업 4가지의 이름과 설명은 초안. 실제 사업 내용으로 확인·교체 필요.
+     ⚠️ 항목 링크는 모두 아래 '지나온 길'(#work)로 감. 사업별 페이지가 있으면 교체. -->
+<section class="cover" id="cover">
+  <div class="cover-give">
+    <!-- 주소는 아래 DONATE_URLS.regular와 같은 것. JS가 꺼져도 눌리도록 여기에도 적어 둠.
+         한쪽을 바꾸면 다른 쪽도 같이 바꿀 것. -->
+    <a class="cover-btn" id="cover-btn"
+       href="https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&amp;server=GdGrmt6XtgAAdxPdh65AQQ==">후원하기</a>
+    <p class="cover-trust">정부 지원 0원 · 기업 후원 0원</p>
+    <!-- ⚠️ 후원자 수는 "200명 정도"라고만 들어서 어림수로 적었음.
+         정확한 수를 알면 "215명이 27년을" 처럼 바꾸고, 그때는
+         "다음 한 명" 대신 "216번째"로 써도 됨. 여기 한 곳만 고치면 됨. -->
+    <p class="cover-plusone">200여 명이 27년을 지켜왔습니다.<br><span class="you">다음 한 명이 당신입니다.</span></p>
+    <p class="cover-tax">지정기부금 단체 · 연말정산 세액공제 대상</p>
+  </div>
+
+  <div class="cover-work">
+    <div class="cover-work-label">시민행동이 하는 일</div>
+    <div class="cover-work-list">
+      <a class="cover-work-item" href="#work" data-work="budget">
+        <h3>예산 감시</h3>
+        <p>정부와 지자체가 세금을 어디에 쓰는지 추적하고 기록합니다.</p>
+      </a>
+      <a class="cover-work-item" href="#work" data-work="participatory">
+        <h3>참여 예산</h3>
+        <p>예산을 짜는 자리에 시민이 앉을 수 있도록 제도를 살피고 바꿉니다.</p>
+      </a>
+      <!-- 기업 감시 — 설명 문구를 확정하지 못해 잠시 내려둠 (2026-08-13).
+           문구가 정해지면 주석만 풀면 됨.
+      <a class="cover-work-item" href="#work" data-work="corporate">
+        <h3>기업 감시</h3>
+        <p>기업이 시민의 권리와 정보를 어떻게 다루는지 감시합니다.</p>
+      </a>
+      -->
+      <a class="cover-work-item" href="#work" data-work="future">
+        <h3>함께 만드는 미래</h3>
+        <p>재정이 어디로 가야 하는지 시민과 함께 논의하고 제안합니다.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="cover-more">
+    <a href="#hero">시민행동이 어떤 단체인지 보기 <span class="arr" aria-hidden="true">↓</span></a>
+  </div>
+</section>
+
 <section class="hero" id="hero">
   <div class="hero-text">
     <span class="eyebrow">권력감시 · 예산감시 · 시민참여 · 1999년부터</span>
@@ -2120,6 +2318,26 @@ document.querySelector('.topbar .top-cta')?.addEventListener('click', () => trac
 document.querySelector('.topbar .top-cta-sub')?.addEventListener('click', () => track('click_top_subscribe', {}));
 
 updateImpact();
+
+// ───── Cover(첫 화면) ─────
+// 후원 버튼은 아래 폼을 거치지 않고 외부 정기후원 페이지로 바로 보낸다.
+// 금액은 어차피 그쪽에서 다시 입력해야 해서(MRM 제약) 중간 폼은 이탈만 늘림.
+// 첫 화면 전용 이벤트라 아래 폼의 전환과 따로 집계된다.
+(function () {
+  const btn = document.getElementById('cover-btn');
+  if (btn) {
+    btn.addEventListener('click', (e) => {
+      track('click_cover_donate', { donate_type: 'regular' });
+      e.preventDefault();
+      const extra = new URLSearchParams({ donate_type: 'regular', ...utmParams });
+      window.location.href = btn.href + '&' + extra.toString();
+    });
+  }
+
+  document.querySelectorAll('.cover-work-item').forEach(a => {
+    a.addEventListener('click', () => track('click_cover_work', { work: a.dataset.work }));
+  });
+})();
 </script>
 
 </body>
