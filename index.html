@@ -1596,6 +1596,9 @@ footer {
   </div>
 </header>
 
+<!-- 새 첫 화면은 사진과 문구가 확정될 때까지 렌더링하지 않습니다.
+     <template> 안에 보존해 두었으므로 확정 뒤 바깥으로 꺼내면 됩니다. -->
+<template id="cover-draft">
 <!-- ───── Cover — 링크로 들어온 사람이 처음 보는 한 장 ─────
      아래 기존 페이지는 그대로 두고 앞에만 얹은 화면. 내리면 #hero부터 이어짐.
      후원하기 버튼은 아래 폼을 거치지 않고 외부 정기후원 페이지로 바로 보낸다. -->
@@ -1668,6 +1671,8 @@ footer {
     </a>
   </div>
 </section>
+
+</template>
 
 <section class="hero" id="hero">
   <div class="hero-text">
