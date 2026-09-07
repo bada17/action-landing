@@ -1609,7 +1609,7 @@ footer {
     <!-- 주소는 아래 DONATE_URLS.regular와 같은 것. JS가 꺼져도 눌리도록 여기에도 적어 둠.
          한쪽을 바꾸면 다른 쪽도 같이 바꿀 것. -->
     <a class="cover-btn" id="cover-btn"
-       href="https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&amp;server=GdGrmt6XtgAAdxPdh65AQQ==">
+       href="https://secure.donus.org/withaction0909/pay/step1">
       지금 후원하기 <span class="arrow" aria-hidden="true">→</span>
     </a>
 
@@ -2192,8 +2192,12 @@ document.querySelector('.amount-custom').addEventListener('input', () => {
 //   - 추후 토스트/모달로 UX 개선 여지 있음
 // -----------------------------------------------------------------
 const DONATE_URLS = {
-  regular: 'https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&server=GdGrmt6XtgAAdxPdh65AQQ==',
-  once: 'https://mrmweb.hsit.co.kr/v2/Member/SupportOnce.aspx?action=once&server=GdGrmt6XtgAAdxPdh65AQQ=='
+  // 2026-09-07 — 정기·일시 둘 다 도너스로 보냅니다(사용자 지시).
+  //   옛 시스템(mrmweb.hsit.co.kr)의 후원 신청 두 입구는 404 였습니다.
+  //   일시후원 자리는 도너스에서 '모금함'인데 건마다 주소가 달라, 모금함을 열면
+  //   once 한 줄만 그 주소로 바꾸면 됩니다.
+  regular: 'https://secure.donus.org/withaction0909/pay/step1',
+  once: 'https://secure.donus.org/withaction0909/pay/step1'
 };
 document.getElementById('donate-go').addEventListener('click', () => {
   const amount = currentAmount();
