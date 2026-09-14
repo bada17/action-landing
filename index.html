@@ -658,16 +658,37 @@ a { color: inherit; }
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 32px;
 }
-.trust-cell .num {
+/* ⚠️ 이 칸의 클래스 이름을 .num · .unit · .label 로 되돌리지 마세요 (2026-09-14).
+   이 페이지는 캠페이너스(imweb) 안에 코드 위젯으로 붙습니다. 거기 전역 CSS 에
+   같은 이름의 규칙이 이미 있어서, 우리가 적지 않은 속성을 그쪽이 채워 버렸습니다.
+     · function.css   .num   { display:inline-block; width:22px; height:22px; … }  ← 알림 개수 배지
+     · vendor_blue_10.css .label { display:inline; white-space:nowrap; … }          ← 부트스트랩 label
+   우리 규칙(#ah-donate .trust-cell .num)이 더 셌지만 display·width 를 안 적었기
+   때문에, 숫자 칸이 22×22 상자가 되어 단위가 아래로 떨어지고 '최초'가 세로로
+   쪼개졌습니다. 이름을 이 페이지 전용으로 바꿔서 아예 안 겹치게 했습니다. */
+.trust-cell .donate-stat-number {
+  display: block;
   font-family: 'GmarketSans', sans-serif;
   font-weight: 700;
   font-size: 42px;
   line-height: 1.1;
   color: var(--brand);
   margin-bottom: 10px;
+  white-space: nowrap;
 }
-.trust-cell .num .unit { font-size: 20px; color: #fff; margin-left: 3px; }
-.trust-cell .label { font-size: 14px; color: rgba(255,255,255,0.75); word-break: keep-all; }
+.trust-cell .donate-stat-number .donate-stat-unit {
+  display: inline;
+  font-size: 20px;
+  color: #fff;
+  margin-left: 3px;
+}
+.trust-cell .donate-stat-label {
+  display: block;
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  word-break: keep-all;
+  white-space: normal;
+}
 
 /* ───────── About ───────── */
 .about {
@@ -1536,7 +1557,7 @@ footer {
   .btn-sub { width: 100%; text-align: center; }
   .trust { padding: 44px 20px; }
   .trust-inner { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
-  .trust-cell .num { font-size: 34px; }
+  .trust-cell .donate-stat-number { font-size: 34px; }
   .cases { padding: 48px 20px 64px; }
   .case-card { padding: 24px 22px; }
   .case-card.has-thumb { padding-top: 0; }
@@ -1775,20 +1796,20 @@ footer {
 <section class="trust">
   <div class="trust-inner">
     <div class="trust-cell">
-      <div class="num" data-count="27">0<span class="unit">년</span></div>
-      <div class="label">1999년 창립 이후 이어온<br>예산감시 활동</div>
+      <div class="donate-stat-number" data-count="27">0<span class="donate-stat-unit">년</span></div>
+      <div class="donate-stat-label">1999년 창립 이후 이어온<br>예산감시 활동</div>
     </div>
     <div class="trust-cell">
-      <div class="num" data-count="40">0<span class="unit">회</span></div>
-      <div class="label">예산낭비 사례에 수여한<br>'밑빠진 독상'</div>
+      <div class="donate-stat-number" data-count="40">0<span class="donate-stat-unit">회</span></div>
+      <div class="donate-stat-label">예산낭비 사례에 수여한<br>'밑빠진 독상'</div>
     </div>
     <div class="trust-cell">
-      <div class="num">0<span class="unit">원</span></div>
-      <div class="label">정부·기업으로부터 받은 지원금<br>— 창립 이래 원칙입니다</div>
+      <div class="donate-stat-number">0<span class="donate-stat-unit">원</span></div>
+      <div class="donate-stat-label">정부·기업으로부터 받은 지원금<br>— 창립 이래 원칙입니다</div>
     </div>
     <div class="trust-cell">
-      <div class="num">최초</div>
-      <div class="label">정부 예산요구서 공개<br>대법원 승소 판결</div>
+      <div class="donate-stat-number">최초</div>
+      <div class="donate-stat-label">정부 예산요구서 공개<br>대법원 승소 판결</div>
     </div>
   </div>
 </section>
@@ -2238,14 +2259,14 @@ document.querySelectorAll('a[href="#donate"]').forEach(a => {
 
 // ───── 숫자 카운트업 ─────
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const counters = document.querySelectorAll('.trust-cell .num[data-count]');
+const counters = document.querySelectorAll('.trust-cell .donate-stat-number[data-count]');
 if (!reduced && 'IntersectionObserver' in window) {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
       const target = parseInt(el.dataset.count, 10);
-      const unit = el.querySelector('.unit')?.outerHTML || '';
+      const unit = el.querySelector('.donate-stat-unit')?.outerHTML || '';
       const start = performance.now();
       const dur = 900;
       function tick(now) {
@@ -2261,7 +2282,7 @@ if (!reduced && 'IntersectionObserver' in window) {
   counters.forEach(c => io.observe(c));
 } else {
   counters.forEach(el => {
-    const unit = el.querySelector('.unit')?.outerHTML || '';
+    const unit = el.querySelector('.donate-stat-unit')?.outerHTML || '';
     el.innerHTML = el.dataset.count + unit;
   });
 }
